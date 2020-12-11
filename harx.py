@@ -36,12 +36,16 @@ import json
 import magic
 import os
 import sys
-from urllib.parse import urlparse
 import base64
 import posixpath
 import hashlib
 import codecs
 
+# Python 3/2 alternative
+try:
+    from urllib.parse import urlparse
+except ImportError:
+    from urlparse import urlparse
 
 # -----------------------------------------------------------------------------
 # Write CSV
