@@ -103,13 +103,16 @@ def getObjects(har):
 
     for entry in har['log']['entries']:
 
+        url = entry['request']['url']
+        time = entry['startedDateTime']
         method = entry['request']['method']
         mimeType = entry['response']['content']['mimeType']
         size = entry['response']['content']['size']
+
         if 'text' in entry['response']['content']:
             content = entry['response']['content']['text']
-        url = entry['request']['url']
-        time = entry['startedDateTime']
+        else:
+            content = ''
 
         objects[idx] = {}
         objects[idx]['time'] = time
