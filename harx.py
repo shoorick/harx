@@ -48,21 +48,21 @@ import codecs
 # -----------------------------------------------------------------------------
 def writeCSV(file, objects):
     """Write CSV"""
-    f = csv.writer(open(file, "wb+"))
+    f = csv.writer(open(file, 'wb+'))
 
     ### write header
-    f.writerow(["index", "time", "method", "mimetype", "size", "url"])
+    f.writerow(['index', 'time', 'method', 'mimetype', 'size', 'url'])
 
     idx = 0
 
     while idx != len(objects):
         f.writerow([
             idx,
-            objects[idx]["time"],
-            objects[idx]["method"],
-            objects[idx]["mimeType"],
-            objects[idx]["size"],
-            objects[idx]["url"]])
+            objects[idx]['time'],
+            objects[idx]['method'],
+            objects[idx]['mimeType'],
+            objects[idx]['size'],
+            objects[idx]['url']])
 
         idx += 1
 
@@ -130,12 +130,12 @@ def printObjects(objects):
 
     while idx != len(objects):
 
-        fileObject = "[" + str(idx).rjust(3, " ") + "] " +\
-            "[" + objects[idx]['time'] + "] " +\
-            "[" + objects[idx]['method'].rjust(6, " ") + "] " +\
-            "[" + objects[idx]['mimeType'].rjust(30, " ") + "] " +\
-            "[Size: " + str(objects[idx]['size']).rjust(8, " ") + "] " +\
-            "[" + objects[idx]['url'] + "]"
+        fileObject = '[' + str(idx).rjust(3, ' ') + '] ' +\
+            '[' + objects[idx]['time'] + '] ' +\
+            '[' + objects[idx]['method'].rjust(6, ' ') + '] ' +\
+            '[' + objects[idx]['mimeType'].rjust(30, ' ') + '] ' +\
+            '[Size: ' + str(objects[idx]['size']).rjust(8, ' ') + '] ' +\
+            '[' + objects[idx]['url'] + "]"
 
         print(fileObject)
 
@@ -172,7 +172,7 @@ def getFilename(URL):
     filename =  workPath[-1]
 
     ### generate filename based on url.file when no filename exists
-    if filename == "":
+    if filename == '':
         filename = getURL(URL) + ".file"
 
     return filename
@@ -186,9 +186,9 @@ def getMD5(fileName):
 
     hash_md5 = hashlib.md5()
 
-    with open(fileName, "rb") as f:
+    with open(fileName, 'rb') as f:
 
-        for chunk in iter(lambda: f.read(4096), b""):
+        for chunk in iter(lambda: f.read(4096), b''):
             hash_md5.update(chunk)
 
     return hash_md5.hexdigest()
@@ -204,10 +204,10 @@ def getSize(fileName, suffix='B'):
 
     for unit in ['','Ki','Mi','Gi','Ti','Pi','Ei','Zi']:
         if abs(num) < 1024.0:
-            return "%3.1f%s%s" % (num, unit, suffix)
+            return '%3.1f%s%s' % (num, unit, suffix)
         num /= 1024.0
 
-    return "%.1f%s%s" % (num, 'Yi', suffix)
+    return '%.1f%s%s' % (num, 'Yi', suffix)
 
 
 # -----------------------------------------------------------------------------
@@ -245,7 +245,7 @@ def processObject(idx, content, filename, path, numberFiles):
     data = getB64Decode(content)
 
     if numberFiles:
-        file = str(idx) + "-" + getFilename(filename)
+        file = str(idx) + '-' + getFilename(filename)
     else:
         file = getFilename(filename)
 
@@ -255,11 +255,11 @@ def processObject(idx, content, filename, path, numberFiles):
     mime = getMagic(path + file)
 
     print(
-        "[" + str(idx).rjust(3, " ") + "] " +
-        "[" + file[0:30].rjust(30, " ") + "] " +
-        "[Size: " + size.rjust(8, " ") + "] "+
-        "[" + md5 + "] [" + mime.rjust(30, " ") + "] " +
-        "[" + objectList[idx]['url'] + "]"
+        '[' + str(idx).rjust(3, ' ') + '] ' +
+        '[' + file[0:30].rjust(30, ' ') + '] ' +
+        '[Size: ' + size.rjust(8, ' ') + '] '+
+        '[' + md5 + '] [' + mime.rjust(30, ' ') + '] ' +
+        '[' + objectList[idx]['url'] + ']'
         )
 
     return True
@@ -268,16 +268,16 @@ def processObject(idx, content, filename, path, numberFiles):
 # -----------------------------------------------------------------------------
 # Extract File Assets
 # -----------------------------------------------------------------------------
-def extractObject(objectList, index, path="", numberFiles=False):
+def extractObject(objectList, index, path='', numberFiles=False):
     """Extract File Assets"""
 
-    if path != "":
+    if path != '':
         ### cross platform trailing slash fix
         if path[-1] != os.sep:
             path = path + os.sep
         createDir(path)
 
-    if index == "all":
+    if index == 'all':
 
         idx = 0
 
@@ -285,7 +285,7 @@ def extractObject(objectList, index, path="", numberFiles=False):
             if 'content' in objectList[idx]:
                 processObject(idx, objectList[idx]['content'], objectList[idx]['url'], path, numberFiles)
             else:
-                print("[" + str(idx).rjust(3, " ") + "] No content for object found.")
+                print('[' + str(idx).rjust(3, ' ') + '] No content for object found.')
 
             idx += 1
 
@@ -297,9 +297,9 @@ def extractObject(objectList, index, path="", numberFiles=False):
             if 'content' in objectList[idx]:
                 processObject(idx, objectList[idx]['content'], objectList[idx]['url'], path, numberFiles)
             else:
-                print("[" + str(index).rjust(3, " ") + "] No content for object found.")
+                print('[' + str(index).rjust(3, ' ') + '] No content for object found.')
         else:
-            print("[" + str(index).rjust(3, " ") + "] Object not found.")
+            print('[' + str(index).rjust(3, ' ') + '] Object not found.')
 
 
 # -----------------------------------------------------------------------------
@@ -309,10 +309,10 @@ def writeFile(file, data):
     """Write data to file."""
 
     try:
-        with codecs.open(file, "w", 'utf8') as exportFile:
+        with codecs.open(file, 'w', 'utf8') as exportFile:
             exportFile.write(data)
     except (UnicodeDecodeError) as e:
-        with open(file, "w") as exportFile:
+        with open(file, 'w') as exportFile:
             exportFile.write(data)
 
     return True
@@ -321,15 +321,15 @@ def writeFile(file, data):
 # -----------------------------------------------------------------------------
 # Main
 # -----------------------------------------------------------------------------
-if __name__ == "__main__":
+if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('-c', '--csv', help="Save object list to [CSV]")
-    parser.add_argument('-l', '--list', action='store_true', default=0, help="List objects")
-    parser.add_argument('-x', '--eXtract', type=int, help="eXtract object matching index from -l output")
-    parser.add_argument('-xa', '--eXtractAll', action='store_true', default=0, help="eXtract all objects")
-    parser.add_argument('-d', '--directory', help="[DIRECTORY] to extract files to")
-    parser.add_argument('-n', '--number', action='store_true', default=0, help="prepend output filename with index from -l output")
+    parser.add_argument('-c', '--csv', help='Save object list to [CSV]')
+    parser.add_argument('-l', '--list', action='store_true', default=0, help='List objects')
+    parser.add_argument('-x', '--eXtract', type=int, help='eXtract object matching index from -l output')
+    parser.add_argument('-xa', '--eXtractAll', action='store_true', default=0, help='eXtract all objects')
+    parser.add_argument('-d', '--directory', help='[DIRECTORY] to extract files to')
+    parser.add_argument('-n', '--number', action='store_true', default=0, help='prepend output filename with index from -l output')
     parser.add_argument('har_file')
     args = parser.parse_args()
 
@@ -338,10 +338,10 @@ if __name__ == "__main__":
     try:
         har = json.load(file(args.har_file, 'r'))
     except IndexError:
-        sys.stderr.write("Usage: %s <file.har>\n" % (sys.argv[0]))
+        sys.stderr.write('Usage: %s <file.har>\n' % (sys.argv[0]))
         sys.exit(1)
     except ValueError as e:
-        sys.stderr.write("Invalid .har file: %s\n" % (str(e)))
+        sys.stderr.write('Invalid .har file: %s\n' % (str(e)))
         sys.exit(2)
 
     ### Export Objects List to CSV
@@ -362,7 +362,7 @@ if __name__ == "__main__":
         if args.directory:
             extractObject(objectList, args.eXtract, args.directory, args.number)
         else:
-            extractObject(objectList, args.eXtract, "", args.number)
+            extractObject(objectList, args.eXtract, '', args.number)
 
     ### Extract All Objects
     if args.eXtractAll:
@@ -372,4 +372,4 @@ if __name__ == "__main__":
         if args.directory:
             extractObject(objectList, 'all', args.directory, args.number)
         else:
-            extractObject(objectList, 'all', "", args.number)
+            extractObject(objectList, 'all', '', args.number)
