@@ -336,7 +336,8 @@ if __name__ == '__main__':
 
     ### Read HAR file
     try:
-        har = json.load(file(args.har_file, 'r'))
+        with open(args.har_file, 'r') as har_file:
+            har = json.load(har_file)
     except IndexError:
         sys.stderr.write('Usage: %s <file.har>\n' % (sys.argv[0]))
         sys.exit(1)
