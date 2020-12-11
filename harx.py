@@ -36,7 +36,7 @@ import json
 import magic
 import os
 import sys
-import urlparse
+from urllib.parse import urlparse
 import base64
 import posixpath
 import hashlib
@@ -148,15 +148,15 @@ def printObjects(objects):
 def getURL(URL):
     """Get santizied URL"""
 
-    parsedURL = urlparse.urlparse(URL).netloc
+    netloc = urlparse(URL).netloc
 
     ### remove port
-    if ":" in parsedURL:
-        workURL = parsedURL.split(':')
+    if ':' in netloc:
+        workURL = netloc.split(':')
         cleanURL =  workURL[1]
         return cleanURL
     else:
-        return parsedURL
+        return netloc
 
 
 # -----------------------------------------------------------------------------
@@ -165,7 +165,7 @@ def getURL(URL):
 def getFilename(URL):
     """Get filename from URL"""
 
-    path = urlparse.urlparse(URL).path
+    path = urlparse(URL).path
 
     workPath = path.split('/')
 
