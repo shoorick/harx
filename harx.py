@@ -137,7 +137,7 @@ def printObjects(objects):
             "[Size: " + str(objects[idx]['size']).rjust(8, " ") + "] " +\
             "[" + objects[idx]['url'] + "]"
 
-        print fileObject
+        print(fileObject)
 
         idx += 1
 
@@ -254,11 +254,13 @@ def processObject(idx, content, filename, path, numberFiles):
     size = getSize(path + file)
     mime = getMagic(path + file)
 
-    print "[" + str(idx).rjust(3, " ") + "] " +\
-        "[" + file[0:30].rjust(30, " ") + "] " +\
-        "[Size: " + size.rjust(8, " ") + "] "+\
-        "[" + md5 + "] [" + mime.rjust(30, " ") + "] " +\
+    print(
+        "[" + str(idx).rjust(3, " ") + "] " +
+        "[" + file[0:30].rjust(30, " ") + "] " +
+        "[Size: " + size.rjust(8, " ") + "] "+
+        "[" + md5 + "] [" + mime.rjust(30, " ") + "] " +
         "[" + objectList[idx]['url'] + "]"
+        )
 
     return True
 
@@ -283,7 +285,7 @@ def extractObject(objectList, index, path="", numberFiles=False):
             if 'content' in objectList[idx]:
                 processObject(idx, objectList[idx]['content'], objectList[idx]['url'], path, numberFiles)
             else:
-                print "[" + str(idx).rjust(3, " ") + "] No content for object found."
+                print("[" + str(idx).rjust(3, " ") + "] No content for object found.")
 
             idx += 1
 
@@ -295,9 +297,9 @@ def extractObject(objectList, index, path="", numberFiles=False):
             if 'content' in objectList[idx]:
                 processObject(idx, objectList[idx]['content'], objectList[idx]['url'], path, numberFiles)
             else:
-                print "[" + str(index).rjust(3, " ") + "] No content for object found."
+                print("[" + str(index).rjust(3, " ") + "] No content for object found.")
         else:
-            print "[" + str(index).rjust(3, " ") + "] Object not found."
+            print("[" + str(index).rjust(3, " ") + "] Object not found.")
 
 
 # -----------------------------------------------------------------------------
