@@ -340,7 +340,7 @@ if __name__ == "__main__":
     except IndexError:
         sys.stderr.write("Usage: %s <file.har>\n" % (sys.argv[0]))
         sys.exit(1)
-    except ValueError, e:
+    except ValueError as e:
         sys.stderr.write("Invalid .har file: %s\n" % (str(e)))
         sys.exit(2)
 
