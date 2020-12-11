@@ -344,6 +344,9 @@ if __name__ == '__main__':
     except ValueError as e:
         sys.stderr.write('Invalid .har file: %s\n' % (str(e)))
         sys.exit(2)
+    except (FileNotFoundError, IsADirectoryError, OSError, PermissionError) as e:
+        sys.stderr.write('Cannot open file: %s\n' % (str(e)))
+        sys.exit(3)
 
     ### Export Objects List to CSV
     if args.csv:
