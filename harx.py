@@ -278,11 +278,9 @@ def extractObject(objectList, index, path='', numberFiles=False):
 
     if index == 'all':
 
-        idx = 0
-
-        while idx != len(objectList):
-            if 'content' in objectList[idx]:
-                processObject(idx, objectList[idx]['content'], objectList[idx]['url'], path, numberFiles)
+        for idx, object in sorted(objectList.items()):
+            if 'content' in object:
+                processObject(idx, object['content'], object['url'], path, numberFiles)
             else:
                 print('[%3s] No content for object found.' % idx)
 
@@ -290,11 +288,10 @@ def extractObject(objectList, index, path='', numberFiles=False):
 
     elif isinstance(index, int):
 
-        idx = index
-
-        if idx in objectList:
-            if 'content' in objectList[idx]:
-                processObject(idx, objectList[idx]['content'], objectList[idx]['url'], path, numberFiles)
+        if index in objectList:
+            object = objectList[index]
+            if 'content' in object:
+                processObject(index, object['content'], object['url'], path, numberFiles)
             else:
                 print('[%3s] No content for object found.' % index)
         else:
