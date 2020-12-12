@@ -133,20 +133,15 @@ def getObjects(har):
 def printObjects(objects):
     """Generate file asset list"""
 
-    idx = 0
+    for i, obj in sorted(objects.items()):
 
-    while idx != len(objects):
-
-        fileObject = '[%3s] [%s] [%6s] [%30s] [Size: %8s]  [%s]' % (
-            idx,
-            objects[idx]['time'], objects[idx]['method'],
-            objects[idx]['mimeType'], objects[idx]['size'],
-            objectList[idx]['url']
+        print(
+            '[%3s] [%s] [%6s] [%30s] [Size: %8s]  [%s]' % (
+                i,
+                obj['time'], obj['method'], obj['mimeType'],
+                obj['size'], obj['url']
             )
-
-        print(fileObject)
-
-        idx += 1
+        )
 
 
 # -----------------------------------------------------------------------------
