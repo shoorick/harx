@@ -137,12 +137,12 @@ def printObjects(objects):
 
     while idx != len(objects):
 
-        fileObject = '[' + str(idx).rjust(3, ' ') + '] ' +\
-            '[' + objects[idx]['time'] + '] ' +\
-            '[' + objects[idx]['method'].rjust(6, ' ') + '] ' +\
-            '[' + objects[idx]['mimeType'].rjust(30, ' ') + '] ' +\
-            '[Size: ' + str(objects[idx]['size']).rjust(8, ' ') + '] ' +\
-            '[' + objects[idx]['url'] + "]"
+        fileObject = '[%3s] [%s] [%6s] [%30s] [Size: %8s]  [%s]' % (
+            idx,
+            objects[idx]['time'], objects[idx]['method'],
+            objects[idx]['mimeType'], objects[idx]['size'],
+            objectList[idx]['url']
+            )
 
         print(fileObject)
 
@@ -262,11 +262,8 @@ def processObject(idx, content, filename, path, numberFiles):
     mime = getMagic(path + file)
 
     print(
-        '[' + str(idx).rjust(3, ' ') + '] ' +
-        '[' + file[0:30].rjust(30, ' ') + '] ' +
-        '[Size: ' + size.rjust(8, ' ') + '] '+
-        '[' + md5 + '] [' + mime.rjust(30, ' ') + '] ' +
-        '[' + objectList[idx]['url'] + ']'
+        '[%3s] [%30s] [Size: %8s] [%s] [%30s] [%s]' % \
+        (idx, file[:30], size, md5, mime.decode(), objectList[idx]['url'])
         )
 
     return True
@@ -292,7 +289,7 @@ def extractObject(objectList, index, path='', numberFiles=False):
             if 'content' in objectList[idx]:
                 processObject(idx, objectList[idx]['content'], objectList[idx]['url'], path, numberFiles)
             else:
-                print('[' + str(idx).rjust(3, ' ') + '] No content for object found.')
+                print('[%3s] No content for object found.' % idx)
 
             idx += 1
 
@@ -304,9 +301,9 @@ def extractObject(objectList, index, path='', numberFiles=False):
             if 'content' in objectList[idx]:
                 processObject(idx, objectList[idx]['content'], objectList[idx]['url'], path, numberFiles)
             else:
-                print('[' + str(index).rjust(3, ' ') + '] No content for object found.')
+                print('[%3s] No content for object found.' % index)
         else:
-            print('[' + str(index).rjust(3, ' ') + '] Object not found.')
+            print('[%3s] Object not found.' % index)
 
 
 # -----------------------------------------------------------------------------
