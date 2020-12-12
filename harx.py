@@ -338,13 +338,13 @@ if __name__ == '__main__':
         with open(args.har_file, 'r') as har_file:
             har = json.load(har_file)
     except IndexError:
-        sys.stderr.write('Usage: %s <file.har>\n' % (sys.argv[0]))
+        sys.stderr.write('Usage: %s <file.har>\n' % sys.argv[0])
         sys.exit(1)
     except ValueError as e:
-        sys.stderr.write('Invalid .har file: %s\n' % (str(e)))
+        sys.stderr.write('Invalid .har file: %s\n' % str(e))
         sys.exit(2)
     except (FileNotFoundError, IsADirectoryError, OSError, PermissionError) as e:
-        sys.stderr.write('Cannot open file: %s\n' % (str(e)))
+        sys.stderr.write('Cannot open file: %s\n' % str(e))
         sys.exit(3)
 
     ### Export Objects List to CSV
