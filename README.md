@@ -1,17 +1,22 @@
 # Description
+
 HAR eXtractor.
 
-This utility was developed to assist security analysts working with HTTP Archive (HAR) files to list and extract the contained objects.
+This utility was developed to assist security analysts working with HTTP
+Archive (HAR) files to list and extract the contained objects.
 
-More information about the HTTP Archive (HAR) format can be read here: https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/HAR/Overview.html
+More information about the HTTP Archive (HAR) format can be read here:
+https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/HAR/Overview.html
 
 # Disclaimer
+
 * This code is a proof of concept only and is not warranted for production use
 * No support is available for this software
 * This code has not been audited for security issues
 * Use entirely at your own risk
 
 # Requirements
+
 **Python 2.7 or 3.x**
 
 * Python Magic Module: `pip install python-magic`
