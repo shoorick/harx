@@ -39,7 +39,7 @@ import sys
 import base64
 import posixpath
 import hashlib
-import codecs
+# import codecs
 
 # Python 3/2 alternative
 try:
@@ -315,12 +315,15 @@ def extractObject(objectList, index, path='', numberFiles=False):
 def writeFile(file, data):
     """Write data to file."""
 
-    try:
-        with codecs.open(file, 'w', 'utf8') as exportFile:
-            exportFile.write(data)
-    except (UnicodeDecodeError) as e:
-        with open(file, 'w') as exportFile:
-            exportFile.write(data)
+    with open(file, 'wb') as exportFile:
+        exportFile.write(data)
+
+    # try:
+        # with codecs.open(file, 'w', 'utf8') as exportFile:
+            # exportFile.write(data)
+    # except (UnicodeDecodeError) as e:
+        # with open(file, 'w') as exportFile:
+            # exportFile.write(data)
 
     return True
 
