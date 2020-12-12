@@ -12,7 +12,7 @@ More information about the HTTP Archive (HAR) format can be read here: https://d
 * Use entirely at your own risk
 
 # Requirements
-**Python 2.7**
+**Python 2.7 or 3.x**
 
 * Python Magic Module: `pip install python-magic`
 
