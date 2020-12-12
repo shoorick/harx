@@ -1,4 +1,5 @@
-# Description
+Description
+===========
 
 HAR eXtractor.
 
@@ -8,14 +9,16 @@ Archive (HAR) files to list and extract the contained objects.
 More information about the HTTP Archive (HAR) format can be read here:
 https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/HAR/Overview.html
 
-# Disclaimer
+Disclaimer
+==========
 
 * This code is a proof of concept only and is not warranted for production use
 * No support is available for this software
 * This code has not been audited for security issues
 * Use entirely at your own risk
 
-# Requirements
+Requirements
+============
 
 **Python 2.7 or 3.x**
 
@@ -26,7 +29,9 @@ For quick module installation:
 pip install -r requirements.txt
 ```
 
-# Usage
+Usage
+=====
+
 ```
 usage: harx.py [-h] [-c CSV] [-l] [-x EXTRACT] [-xa] [-d DIRECTORY] har_file
 
@@ -44,8 +49,12 @@ optional arguments:
                         [DIRECTORY] to extract files to
 ```
 
-# Example Execution
-## List objects
+Example Execution
+=================
+
+List objects
+------------
+
 ```
 ./harx.py -l ek_traffic.har
 [  0] [2015-08-31T17:56:12.104071Z] [   GET] [                    text/plain] [Size:       14] [http://www.msftncsi.com/ncsi.txt]
@@ -59,13 +68,17 @@ optional arguments:
 [212] [2015-08-31T18:01:23.442410Z] [  POST] [     application/ocsp-response] [Size:     1725] [http://sf.symcd.com/]
 ```
 
-## Extract object matching index from -l output
+Extract object matching index from -l output
+--------------------------------------------
+
 ```
 ./harx.py -x 137 ek_traffic.har
 [137] [       41keG5PBKbL-274x300.jpg] [Size:  32.5KiB] [3b58d7efe887212e2b1b631bdd417034] [                    image/jpeg] [http://example.com/wp-content/uploads/2015/06/41keG5PBKbL-274x300.jpg]
 ```
 
-## Extract all objects to a folder
+Extract all objects to a folder
+-------------------------------
+
 ```
 ./harx.py -xa -d ek_traffic_analysis ek_traffic.har
 [  0] [                      ncsi.txt] [Size:    14.0B] [cd5a4d3fdd5bffc16bf959ef75cf37bc] [                    text/plain] [http://www.msftncsi.com/ncsi.txt]
